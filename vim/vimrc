@@ -81,6 +81,9 @@ Bundle "pangloss/vim-javascript"
 " Bundle "jelera/vim-javascript-syntax"
 
 "--------------------------------------------------2}}}
+"---------------jaron add-------------
+Bundle "Yggdroot/indentLine"
+"---------------finish --------------
 
 "-------------- for Python programmers ------------{{{2
 "Python.vim
@@ -168,9 +171,14 @@ set shortmess=atI
 "高亮当前行
 set cul
 "合适的高亮当前行的颜色
-hi CursorLine term=none cterm=none ctermbg=3
+     "hi CursorLine term=none cterm=none ctermbg=3
 "高亮当前列
 set cursorcolumn
+"Jaron add
+set cursorline
+hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
+"Jaron finish
 "自动切换当前目录为当前文件所在目录
 set autochdir
 "800个字符以上的行不去高亮
@@ -185,6 +193,17 @@ set nowrap
 
 "状态栏
 set laststatus=2
+" ---------------jaron add --------------------------------------------------
+" Vim
+ let g:indentLine_color_term = 239
+"GVim
+ let g:indentLine_color_gui = '#A4E57E'
+" none X terminal
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)"
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
+" ------------------finish-----------------------------------------------------
 set ruler
 
 "
@@ -307,7 +326,6 @@ let g:python_highlight_exceptions = 1
 
 "背景:暗色
 set background=dark
-
 if has("gui_macvim")
     colorscheme molokai
 endif
@@ -345,8 +363,11 @@ let g:pep8_map='<C-k>'
 let g:gundo_width=23
 
 "EasyMotion  \键
-let g:EasyMotion_leader_key = '<Leader>'
+"---------------jaron change -----------------------
+" let g:EasyMotion_leader_key = '<Leader>'
 
+let g:EasyMotion_leader_key = '<space>'
+ " ------------------------finish-----------------------------------------------------
 "------------------ taglist
 "We need to install ctags http://ctags.sourceforge.net/ first
 "download it and ./configure; sudo make install.
@@ -433,7 +454,7 @@ noremap wj <c-w><down>
 "--------------- 系统剪切板 ---------------
 
 map <C-c> "+y
-map <C-v> "+p
+"map <C-v> "+p
 "----------------------------------------------------------------------1}}}
 
 "--------------  用户自定义命令 --------------------------------------{{{1
@@ -453,6 +474,12 @@ map <C-v> "+p
 :command WS :%s/\s\+$//e
 " ---------------------------------------------------------------------1}}}
 "
+"-------jaron set---------------------------------------
+set dictionary+=/usr/share/dict/words
+imap jj <ESC>
+cmap jj <ESC>
+"------finish-----------------------------------------------------------------
+
 autocmd BufWrite *.c :WS
 autocmd BufWrite *.h :WS
 autocmd BufWrite *.go :WS
